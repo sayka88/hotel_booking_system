@@ -1,21 +1,29 @@
 class Room:
-    def __init__(self, room_number, room_type, rate_per_night):
+    def __init__(self, room_number, room_type, rate, availability=True):
         self.room_number = room_number
         self.room_type = room_type
-        self.rate_per_night = rate_per_night
-        self.is_available = True
+        self.rate = rate
+        self.availability = availability
 
     def check_availability(self):
-        return self.is_available
+        return self.availability
 
     def update_availability(self, status):
-        self.is_available = status
+        self.availability = status
 
-    def get_details(self):
-        return {
-            'room_number': self.room_number,
-            'room_type': self.room_type,
-            'rate_per_night': self.rate_per_night,
-            'is_available': self.is_available
-        }
+    def get_room_details(self):
+        return f"Room {self.room_number}: {self.room_type}, Rate: {self.rate}, Available: {self.availability}"
+
+# Определение подклассов для разных типов комнат
+class SingleRoom(Room):
+    def __init__(self, room_number, rate, availability=True):
+        super().__init__(room_number, "Single", rate, availability)
+
+class DoubleRoom(Room):
+    def __init__(self, room_number, rate, availability=True):
+        super().__init__(room_number, "Double", rate, availability)
+
+class Suite(Room):
+    def __init__(self, room_number, rate, availability=True):
+        super().__init__(room_number, "Suite", rate, availability)
 

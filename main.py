@@ -1,3 +1,5 @@
+import datetime
+from hotel.room import Room, SingleRoom, DoubleRoom, Suite
 from hotel.room import Room
 from hotel.reservation import Reservation
 from hotel.guest import Guest
