@@ -1,3 +1,5 @@
+from .reservation import Reservation
+
 class Hotel:
     def __init__(self, name, location):
         self.name = name
