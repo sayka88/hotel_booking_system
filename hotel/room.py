@@ -1,32 +1,21 @@
 class Room:
-    def __init__(self, number, room_type, rate):
-        self.number = number
+    def __init__(self, room_number, room_type, rate_per_night):
+        self.room_number = room_number
         self.room_type = room_type
-        self.rate = rate
-        self.availability = {}
+        self.rate_per_night = rate_per_night
+        self.is_available = True
 
-    def is_available(self, check_in, check_out):
-        for date in range(check_in, check_out):
-            if self.availability.get(date, True) is False:
-                return False
-        return True
+    def check_availability(self):
+        return self.is_available
 
-    def update_availability(self, check_in, check_out, status):
-        for date in range(check_in, check_out):
-            self.availability[date] = status
+    def update_availability(self, status):
+        self.is_available = status
 
-    def calculate_rate(self):
-        return self.rate
-
-class SingleRoom(Room):
-    def __init__(self, number, rate):
-        super().__init__(number, 'Single', rate)
-
-class DoubleRoom(Room):
-    def __init__(self, number, rate):
-        super().__init__(number, 'Double', rate)
-
-class Suite(Room):
-    def __init__(self, number, rate):
-        super().__init__(number, 'Suite', rate)
+    def get_details(self):
+        return {
+            'room_number': self.room_number,
+            'room_type': self.room_type,
+            'rate_per_night': self.rate_per_night,
+            'is_available': self.is_available
+        }
 
