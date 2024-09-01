@@ -1,28 +1,44 @@
-import datetime
-from hotel.room import Room, SingleRoom, DoubleRoom, Suite
-from hotel.room import Room
-from hotel.reservation import Reservation
-from hotel.guest import Guest
-from hotel.hotel import Hotel
+from datetime import date
+from hotel import Hotel, SingleRoom, Guest
 
-# Создаем номера
-room1 = Room(101, 'Single', 100)
-room2 = Room(102, 'Double', 150)
-room3 = Room(103, 'Suite', 200)
+def main():
+    # Создаем объект отеля
+    hotel = Hotel("Grand Hotel", "Downtown")
 
-# Создаем отель и добавляем номера
-hotel = Hotel("Sunshine Hotel", "New York")
-hotel.add_room(room1)
-hotel.add_room(room2)
-hotel.add_room(room3)
+    # Добавляем комнаты
+    room1 = SingleRoom(101, 100)
+    room2 = SingleRoom(102, 120)
+    hotel.add_room(room1)
+    hotel.add_room(room2)
 
-# Создаем гостя и бронируем номер
-guest = Guest("John Doe", "johndoe@example.com")
-check_in_date = datetime.date(2024, 9, 10)
-check_out_date = datetime.date(2024, 9, 15)
+    # Создаем гостя
+    guest = Guest("John Doe", "john.doe@example.com")
 
-reservation = hotel.make_reservation(guest, 101, check_in_date, check_out_date)
+    # Даты заезда и выезда
+    check_in_date = date(2024, 9, 10)
+    check_out_date = date(2024, 9, 15)
 
-# Проверяем информацию о бронировании
-print(guest.view_reservations())
+    # Создаем бронь
+    reservation = hotel.make_reservation(guest, 101, check_in_date, check_out_date)
+
+    # Выводим детали брони
+    print("Reservation Details:")
+    print(reservation.get_reservation_details())
+
+    # Выводим все брони отеля
+    print("\nAll Reservations:")
+    for reservation in hotel.reservations:
+        print(reservation.get_reservation_details())
+
+    # Обновляем доступность комнат
+    room1.update_availability(False)  # Комната 101 теперь недоступна
+
+    # Выводим список всех доступных комнат
+    print("\nAvailable Rooms:")
+    for room in hotel.rooms:
+        if room.check_availability():
+            print(room.get_room_details())
+
+if __name__ == "__main__":
+    main()
 
