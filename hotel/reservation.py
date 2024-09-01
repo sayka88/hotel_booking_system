@@ -12,7 +12,7 @@ class Reservation:
 
     def calculate_total_cost(self):
         num_days = (self.check_out_date - self.check_in_date).days
-        return num_days * self.room.rate_per_night
+        return num_days * self.room.rate_per_night  # Используем rate_per_night
 
     def modify_reservation(self, new_check_in, new_check_out):
         self.check_in_date = new_check_in
