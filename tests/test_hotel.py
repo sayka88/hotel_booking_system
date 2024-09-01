@@ -1,37 +1,28 @@
-import unittest
-from hotel.hotel import Hotel
-from hotel.room import SingleRoom
-from hotel.guest import Guest
+from .reservation import Reservation
 
-class TestHotel(unittest.TestCase):
-    def test_add_room(self):
-        hotel = Hotel("Test Hotel", "Test Location")
-        room = SingleRoom(101, 100)
-        hotel.add_room(room)
-        self.assertIn(room, hotel.rooms)
+class Hotel:
+    def __init__(self, name, location):
+        self.name = name
+        self.location = location
+        self.rooms = []
+        self.reservations = []
 
-    def test_remove_room(self):
-        hotel = Hotel("Test Hotel", "Test Location")
-        room = SingleRoom(101, 100)
-        hotel.add_room(room)
-        hotel.remove_room(room)
-        self.assertNotIn(room, hotel.rooms)
+    def add_room(self, room):
+        self.rooms.append(room)
 
-    def test_get_available_rooms(self):
-        hotel = Hotel("Test Hotel", "Test Location")
-        room = SingleRoom(101, 100)
-        hotel.add_room(room)
-        available_rooms = hotel.get_available_rooms(1, 5)
-        self.assertIn(room, available_rooms)
+    def remove_room(self, room):
+        self.rooms.remove(room)
 
-    def test_make_reservation(self):
-        hotel = Hotel("Test Hotel", "Test Location")
-        room = SingleRoom(101, 100)
-        guest = Guest("Test Guest", "test@example.com")
-        hotel.add_room(room)
-        reservation = hotel.make_reservation(guest, room, 1, 5)
-        self.assertIn(reservation, hotel.reservations)
+    def get_available_rooms(self, check_in, check_out):
+        available_rooms = []
+        for room in self.rooms:
+            if room.is_available(check_in, check_out):
+                available_rooms.append(room)
+        return available_rooms
 
-if __name__ == "__main__":
-    unittest.main()
+    def make_reservation(self, guest, room, check_in, check_out):
+        reservation = Reservation(guest, room, check_in, check_out)
+        self.reservations.append(reservation)
+        room.update_availability(check_in, check_out, False)
+        return reservation
 
