@@ -58,13 +58,13 @@ To run the tests, use the following command:
 ```bash
 python3 -m unittest discover -s tests
 
-### Tests
+### 'Tests'
 test_initial_reservation: Checks the creation of a new reservation.
 test_modify_reservation: Checks the modification of an existing reservation.
 test_cancel_reservation: Checks the cancellation of a reservation.
 test_get_reservation_details: Checks the retrieval of reservation details.
 
-### Installation
+### 'Installation'
 Clone the repository and install the necessary dependencies:
 
 git clone <URL-REPOSITORY>
