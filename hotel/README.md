@@ -47,7 +47,7 @@ Represents a reservation in the hotel.
   - `cancel_reservation()`: Cancels the reservation and updates room availability
   - `get_reservation_details()`: Returns the details of the reservation
 
-## Testing
+### 'Testing'
 
 The project uses the `unittest` module for testing functionality.
 
