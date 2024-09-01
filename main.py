@@ -1,8 +1,7 @@
-import datetime
-from room import Room
-from reservation import Reservation
-from guest import Guest
-from hotel import Hotel
+from hotel.room import Room
+from hotel.reservation import Reservation
+from hotel.guest import Guest
+from hotel.hotel import Hotel
 
 # Создаем номера
 room1 = Room(101, 'Single', 100)
