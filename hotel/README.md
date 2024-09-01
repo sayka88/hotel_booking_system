@@ -6,3 +6,4 @@ The Hotel Booking System is designed to manage hotel reservations, rooms, and gu
 
 ## Project Structure
 
+hotel_booking_system/ │ ├── hotel/ │ ├── init.py │ ├── guest.py │ ├── hotel.py │ ├── reservation.py │ ├── room.py │ ├── tests/ │ ├── init.py │ ├── test_hotel.py │ └── test_reservation.py │ ├── README.md ├── main.py
